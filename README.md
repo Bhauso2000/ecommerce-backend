@@ -156,6 +156,4 @@ JWT_SECRET=your_jwt_secret
 This project is open-source and free to use for educational or commercial purposes.
 
 ---
-
-Let me know if you'd like this in a downloadable `README.md` file or want Swagger setup instructions added as well.
-
+ 

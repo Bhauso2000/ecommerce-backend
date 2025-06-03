@@ -25,8 +25,8 @@ Before running any service, make sure you have the following installed:
 - [PostgreSQL](https://www.postgresql.org/download/)
   - Create the following PostgreSQL databases:
     - `customer-service-db`
-    - `product-service-db`
-    - `order-service-db`
+    - `product-service`
+    - `order-service`
 
 ---
 

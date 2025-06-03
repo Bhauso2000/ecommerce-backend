@@ -1,78 +1,161 @@
-Download the zip file and extract it
-Zip file contain backend foler that contains
-1.Api gateway
-2.Customer service
-3.order service
-4.product service
 
-Prerequisite-
-download rabbitmq locally , postgress db
-create order-service,customer-service-db, product-service db in postgress sql
-Customer service
+# 🛒 E-Commerce Microservices System
 
-Folder
-Prisma:-
-This contains db schema and seed file to insert default data 
-src/Common :-
-Contains prisma service
-src/Customer:-
-Contains dto, service and controller
+This project is a microservices-based e-commerce system using **NestJS**, **Prisma**, **RabbitMQ**, **Cloudinary**, and **PostgreSQL**. It includes the following services:
 
-To run customer service
-first do 
+- **API Gateway**
+- **Customer Service**
+- **Product Service**
+- **Order Service**
 
-npm i then run 
+---
+
+## 📦 Folder Structure
+
+backend/ ├── api-gateway/ ├── customer-service/ ├── product-service/ └── order-service/
+
+---
+
+## 🛠 Prerequisites
+
+Before running any service, make sure you have the following installed:
+
+- [Node.js](https://nodejs.org/)
+- [RabbitMQ](https://www.rabbitmq.com/download.html) (run locally)
+- [PostgreSQL](https://www.postgresql.org/download/)
+  - Create the following PostgreSQL databases:
+    - `customer-service-db`
+    - `product-service-db`
+    - `order-service-db`
+
+---
+
+## 🚀 Setup Instructions (Per Service)
+
+### ✅ Customer Service
+
+**Description**: Handles user-related operations such as registration, login, and profile management.
+
+**Folder Structure**:
+
+customer-service/ ├── prisma/               # Prisma schema and seed ├── src/ │   ├── common/           # Prisma service │   └── customer/         # DTOs, controller, services
+
+**Setup**:
+```bash
+cd customer-service
+npm install
 npx prisma init
 npx prisma generate
 npx prisma migrate dev --name init
 npx prisma db seed
-to insert default record
-then npm run start:dev
+npm run start:dev
 
-Product service:-
-All the products related operation performed inthis service
-Folder structure
-Prisma:- contain db connection and seeder file
 
-src/cloidinary
-comtains cloudinary service implementation to upload file
-src/common/prisma:- contains prisma service
+---
 
-src/product
-contains controller ,dto amd services
+✅ Product Service
 
-To run 
+Description: Manages all product operations and file uploads to Cloudinary.
 
-first run npm i
+Folder Structure:
+
+product-service/
+├── prisma/               # Prisma schema and seed
+├── src/
+│   ├── cloudinary/       # Cloudinary service
+│   ├── common/prisma/    # Prisma service
+│   └── product/          # DTOs, controller, services
+
+Setup:
+
+cd product-service
+npm install
 npx prisma init
 npx prisma generate
 npx prisma migrate dev --name init
 npx prisma db seed
-then npm run start:dev
+npm run start:dev
 
-order service:- 
-comtsins all the implementation related customer sction add product to cart,place order,order history
-,remove cart,cart list
-Folder structure
-same as product service
 
-Steps to run
-first run npm i
+---
+
+✅ Order Service
+
+Description: Handles cart operations, order placement, order history, and related actions.
+
+Folder Structure (similar to product service):
+
+order-service/
+├── prisma/
+├── src/
+│   ├── common/prisma/
+│   └── order/            # Cart/order-related logic
+
+Setup:
+
+cd order-service
+npm install
 npx prisma init
 npx prisma generate
 npx prisma migrate dev --name init
-then npm run start:dev
+npm run start:dev
 
 
-Api gateway :-
-Api gateway is central point it connected with all microservice
-it responsible for emoting event to servoce vwsed on request
-it contains middleware login for all authorised request it validate jwt token and add user details in req
-steps to run
+---
 
-Steps to run
-first run npm i
+✅ API Gateway
+
+Description: Acts as the central entry point for all services. Responsible for:
+
+Routing requests to the correct service
+
+Validating JWT tokens
+
+Attaching user info to requests
+
+Communicating with microservices via RabbitMQ
+
+
+Setup:
+
+cd api-gateway
+npm install
 npx prisma init
 npx prisma generate
 npx prisma migrate dev --name init
-then npm run start:dev
+npm run start:dev
+
+
+---
+
+🧪  
+
+
+
+---
+
+📌  
+
+
+
+---
+
+🔐 Environment Variables
+
+Each service should have a .env file with the following:
+
+DATABASE_URL=postgresql://username:password@localhost:5432/your-db-name
+RABBITMQ_URL=amqp://localhost
+JWT_SECRET=your_jwt_secret
+
+
+---
+
+📚 License
+
+This project is open-source and free to use for educational or commercial purposes.
+
+---
+
+Let me know if you'd like this in a downloadable `README.md` file or want Swagger setup instructions added as well.
+
